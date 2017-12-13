@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string.h>
+#include <vector>
+#include <algorithm>
+#include <fstream>
+#include <cstdlib>
+#include <time.h>
+using namespace std;
+
+int main() {
+	
+	fstream in;
+	fstream out;
+	srand(time(NULL));
+	for(int c=3;c<=3;++c){
+		for(int a=0;a<=0;++a){
+			for(int b=0;b<=0;++b){
+				string aa=to_string(a),bb=to_string(b),cc=to_string(c);
+				string in_name="input/input"+cc+aa+bb+".txt";
+				string out_name="output/output"+cc+aa+bb+".txt";
+				
+				in.open(in_name,ios::out);
+				
+				int no=163835;
+				in<<no<<endl;
+				for(int q=0;q<no;++q){
+					in<<rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()+rand()<<' ';
+				}
+				
+				in.close();
+				
+				in.open(in_name,ios::in);
+				out.open(out_name,ios::out);
+				
+				int noo;
+				in>>noo;
+				vector <int> qq;
+				int buffer;
+				for(int q=0;q<noo;++q){
+					in>>buffer;
+					qq.push_back(buffer);
+				}
+				sort(qq.begin(),qq.end());
+				for(int q=0;q<noo;++q){
+					out<<qq[q]<<' ';
+				}
+				
+				out.close();
+				in.close();
+				
+			}
+		}
+	}
+	
+	return 0;
+}
