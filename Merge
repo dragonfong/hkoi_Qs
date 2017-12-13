@@ -12,62 +12,118 @@ int main() {
 	fstream in;
 	fstream out;
 	srand(time(NULL));
-	for(int a=0;a<1;++a){
-		for(int b=0;b<=9;++b){
-			string aa=std::to_string(a),bb=std::to_string(b);
-			string in_name="input"+aa+bb+".txt";
-			string out_name="output"+aa+bb+".txt";
-			
-			in.open(in_name,ios::out);
-			int n=rand()%9+2;										//NNNNNNNNNNNNNNN
-			in<<n<<endl;
-			for(int c=0;c<n;++c){
-				//int sj=rand()%9+2;									//SJSJSJSJSJSJSJSSJ
-				int sj=2;
-				in<<sj<<" ";
-				for(int d=0;d<sj;++d){
-					int ele=rand();
-					in<<ele<<" ";
+	for(int c=0;c<=0;++c){
+		for(int a=4;a<=4;++a){
+			for(int b=0;b<=0;++b){
+				string aa=to_string(a),bb=to_string(b),cc=to_string(c);
+				string in_name="input/input"+cc+aa+bb+".txt";
+				string out_name="output/output"+cc+aa+bb+".txt";
+				
+				in.open(in_name,ios::out);
+				
+				int sizeq=rand()%10+1,sizev=rand()%10+1;
+				int q[sizeq],v[sizev];
+				
+				for(int a=0;a<sizeq;++a){
+					q[a]=rand()%10;
 				}
-				in<<endl;
-			}
-			in.close();
-			
-			in.open(in_name,ios::in);
-			vector <int> final;
-			int N;
-			in>>N;
-			
-			int buffer1;
-			in>>buffer1;
-			int arr1[buffer1];
-			for(int a=0;a<buffer1;++a){
-				in>>arr1[a];
-			}
-			int buffer2;
-			in>>buffer2;
-			int arr2[buffer2];
-			for(int a=0;a<buffer2;++a){
-				in>>arr2[a];
-			}
-			sort (arr1,arr1+buffer1);
-			sort (arr2,arr2+buffer2);
-			merge (arr1,arr1+buffer1,arr2,arr2+buffer2,final.begin());
-			
-			for(int q=0;q<n-2;++q){
-				int buffer1;
-				in>>buffer1;
-				int arr1[buffer1];
-				for(int a=0;a<buffer1;++a){
-					in>>arr1[a];
+				for(int a=0;a<sizev;++a){
+					v[a]=rand()%10;
 				}
-				sort (arr1,arr1+buffer1);
-				merge (arr1,arr1+buffer1,final,final.end(),final.begin());
+				
+				if(sizeq<sizev){
+					for(int a=0;a<sizeq;++a){
+						in<<q[a];
+					}
+					in<<endl;
+					for(int a=0;a<sizev;++a){
+						in<<v[a];
+					}
+				}
+				else if(sizeq>sizev){
+					for(int a=0;a<sizev;++a){
+						in<<v[a];
+					}
+					in<<endl;
+					for(int a=0;a<sizeq;++a){
+						in<<q[a];
+					}
+				}
+				else{
+					int bigger=-1;
+					for(int a=0;a<sizeq;++a){
+						if(v[a]<q[a]){
+							bigger=2;
+							break;
+						}
+						else if(v[a]>q[a]){
+							bigger=1;
+							break
+						}
+					}
+					if(bigger==1){
+						for(int a=0;a<sizeq;++a){
+							in<<q[a];
+						}
+						in<<endl;
+						for(int a=0;a<sizev;++a){
+							in<<v[a];
+						}
+					}
+					else{
+						for(int a=0;a<sizev;++a){
+							in<<v[a];
+						}
+						in<<endl;
+						for(int a=0;a<sizeq;++a){
+							in<<q[a];
+						}
+					}
+				}
+				
+				in.close();
+				
+				in.open(in_name,ios::in);
+				out.open(out_name,ios::out);
+				
+				vector <int> qq;
+				vector <int> vv;
+				char buffer;
+				
+				while (true){
+					in>>buffer;
+					if(buffer!=' '){
+						qq.push_back(buffer-'0');
+					}
+					else{
+						break;
+					}
+				}
+				while (true){
+					in>>buffer;
+					if(buffer!=' '){
+						vv.push_back(buffer-'0');
+					}
+					else{
+						break;
+					}
+				}
+				
+				int qq_vv[(qq.size()>vv.size()?qq.size():vv.size())+1]={0};
+				size_qq_vv=(qq.size()>vv.size()?qq.size():vv.size())+1;
+				for(int a=qq.size()-1;a>=0;--a){
+					qq_vv[size_qq_vv-qq.size()+a]+=qq[a];
+				}
+				for(int a=vv.size()-1;a>=0;--a){
+					qq_vv[size_qq_vv-vv.size()+a]+=v[a];
+					qq_vv[size_qq_vv-vv.size()+a-1]+=qq_vv[size_qq_vv-vv.size()+a]/10;
+					qq_vv[size_qq_vv-vv.size()+a]%=10;
+				}
+				
+				out.close();
+				in.close();
 				
 			}
-			
-			in.close();
-			
 		}
 	}
 	
